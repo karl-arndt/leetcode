@@ -2,20 +2,14 @@ import java.util.HashMap;
 
 class MajorityElement {
     public int majorityElement(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
-        }
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (!map.containsKey(nums[i])) {
-                map.put(nums[i], 1);
-            } else {
-                map.put(nums[i], map.get(nums[i]) + 1);
-                if (map.get(nums[i]) > nums.length / 2) {
-                    return nums[i];
-                }
+        int res = 0;
+        int count = 0;
+        for (int num : nums) {
+            if (count == 0) {
+                res = num;
             }
+            count += (res == num) ? 1 : -1;
         }
-        return -1;
+        return res;
     }
 }
